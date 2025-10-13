@@ -13,16 +13,22 @@ module.exports = {
         type: Sequelize.STRING
       },
       genero: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        references: {model: 'generos', key: 'nome'}
       },
       resumo: {
         type: Sequelize.STRING
       },
       autor: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        references: {model: 'autores', key: 'nome'}
       },
       editora: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        references: {model: 'editoras', key: 'nome'}
       },
       foto: {
         type: Sequelize.STRING
