@@ -14,7 +14,7 @@ module.exports = {
       },
       genero: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {model: 'generos', key: 'nome'}
       },
       resumo: {
@@ -22,13 +22,13 @@ module.exports = {
       },
       autor: {
         allowNull: false,
-        type: Sequelize.STRING,
-        references: {model: 'autores', key: 'nome'}
+        type: Sequelize.INTEGER,
+        references: {model: 'autores', key: 'id'}
       },
       editora: {
         allowNull: false,
-        type: Sequelize.STRING,
-        references: {model: 'editoras', key: 'nome'}
+        type: Sequelize.INTEGER,
+        references: {model: 'editoras', key: 'id'}
       },
       foto: {
         type: Sequelize.STRING

@@ -6,9 +6,18 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Livro extends Model {
     static associate(models) {
-      Livro.hasMany(models.Autor,{
-        foreignkey: 'nome'
-      })
+      Livro.belongsTo(models.Autor, {
+        foreignKey: 'autorId',
+        as: 'autor'
+      });
+      Livro.belongsTo(models.Genero, {
+        foreignKey: 'generoId',
+        as: 'genero'
+      });
+      Livro.belongsTo(models.Editora, {
+        foreignKey: 'editoraId',
+        as: 'editora'
+      });
     }
   }
   Livro.init({
