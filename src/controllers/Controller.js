@@ -1,4 +1,4 @@
-const converterIds = require('../utils/conversorDeStringHelper.js')
+const converteIds = require('../utils/conversorDeStringHelper.js')
 
 class Controller{
     constructor(entidadeService){
@@ -36,13 +36,14 @@ class Controller{
     }
   }
 
-    async atualiza(req, res){
-        const { ...params } = req.params;
-        const dadosAtualizados = req.body;
-        
-        const where = converteIds(params)
-        //isUpdate
-        const foiAtualizado = await this.entidadeService.atualizaDado(dadosAtualizados, where);
+  async atualiza(req, res) {
+    const { ...params } = req.params;
+    const dadosAtualizados = req.body;
+
+    const where = converteIds(params);
+    try {
+      //isUpdated
+      const foiAtualizado = await this.entidadeService.atualizaDado(dadosAtualizados, where);
       if (!foiAtualizado) {
         return res.status(400).json({ mensagem: 'registro não foi atualizado' });
       }
@@ -50,7 +51,7 @@ class Controller{
     } catch (erro) {
       return res.status(500).json({ erro: erro.message });
     }
-
+  }
     async exclui(req, res) {
     const { id } = req.params;
     try {

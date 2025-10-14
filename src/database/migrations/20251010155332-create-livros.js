@@ -1,5 +1,4 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('livros', {
@@ -7,46 +6,62 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       titulo: {
-        type: Sequelize.STRING
-      },
-      genero: {
+        type: Sequelize.STRING,
         allowNull: false,
+      },
+      autorId: {
         type: Sequelize.INTEGER,
-        references: {model: 'generos', key: 'nome'}
+        allowNull: false,
+        references: {
+          model: 'autores',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
+      editoraId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'editoras',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
+      generoId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'generos',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       },
       resumo: {
-        type: Sequelize.STRING
-      },
-      autor: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {model: 'autores', key: 'id'}
-      },
-      editora: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {model: 'editoras', key: 'id'}
-      },
-      foto: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       sinopse: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      foto: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('livros');
-  }
+  },
 };

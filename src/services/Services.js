@@ -1,4 +1,4 @@
-const { where, Transaction} = require('sequelize');
+const { where, transaction} = require('sequelize');
 const dataSource = require('../database/models')
 
 class Services {
@@ -18,7 +18,8 @@ class Services {
 
     async atualizaDado(dadosAtualizados, where){
         const listaDadosAtualizados = await dataSource[this.model].update(dadosAtualizados,{
-            where: {...where}
+            where: {...where},
+   
         });
         if(listaDadosAtualizados[0] === 0){
             return false

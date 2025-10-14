@@ -1,37 +1,42 @@
 'use strict';
-const { foreign_key } = require('i/lib/methods');
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Livro extends Model {
     static associate(models) {
+      // Associação com Autor 
       Livro.belongsTo(models.Autor, {
         foreignKey: 'autorId',
-        as: 'autor'
+        as: 'autorInfo' // 👈 adiciona um alias diferente
       });
-      Livro.belongsTo(models.Genero, {
-        foreignKey: 'generoId',
-        as: 'genero'
-      });
+
+      // Associação com Editora
       Livro.belongsTo(models.Editora, {
         foreignKey: 'editoraId',
-        as: 'editora'
+        as: 'editoraInfo'
+      });
+
+      // Associação com Gênero
+      Livro.belongsTo(models.Genero, {
+        foreignKey: 'generoId',
+        as: 'generoInfo'
       });
     }
   }
+
   Livro.init({
     titulo: DataTypes.STRING,
-    genero: DataTypes.STRING,
     resumo: DataTypes.STRING,
-    autor: DataTypes.STRING,
-    editora: DataTypes.STRING,
-    foto: DataTypes.STRING, //mexer nisso aqui pras por as fotos
-    sinopse: DataTypes.STRING
+    sinopse: DataTypes.STRING,
+    foto: DataTypes.STRING,
+    autorId: DataTypes.INTEGER,
+    editoraId: DataTypes.INTEGER,
+    generoId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Livro',
     tableName: 'livros',
   });
+
   return Livro;
 };
