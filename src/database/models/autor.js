@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   Autor.init({
     nome: DataTypes.STRING,
     biografia: DataTypes.STRING,
+    biografia_resumo: {
+    type: DataTypes.STRING, // ou TEXT se for mais longo
+    allowNull: true},
     foto: DataTypes.STRING
+    
   }, {
     sequelize,
     modelName: 'Autor',

@@ -11,6 +11,7 @@ module.exports = {
       },
       { nome: 'Julia Santos',
         biografia: 'Romancista de histórias emocionantes.', 
+        biografia_resumo: "Kafka foi um escritor tcheco conhecido por obras existencialistas.",
         foto: 'uploads/JuliaSantos.jpg', 
         createdAt: new Date(), 
         updatedAt: new Date() 
