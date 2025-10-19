@@ -9,6 +9,16 @@ class LivroController extends Controller{
 
     }
 
+ static async pegaUm(req, res) {
+    try {
+      const { id } = req.params;
+      const livro = await livrosServices.pegaUmDadoPorId(id);
+      return res.status(200).json(livro);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Erro ao buscar livro");
+    }
+  }
 }
 
 module.exports = LivroController;

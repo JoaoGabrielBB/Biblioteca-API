@@ -4,22 +4,22 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Livro extends Model {
     static associate(models) {
-      // Associação com Autor 
+      // Associação com Autor
       Livro.belongsTo(models.Autor, {
         foreignKey: 'autorId',
-        as: 'autorInfo' // 👈 adiciona um alias diferente
+        as: 'autor'
       });
 
       // Associação com Editora
       Livro.belongsTo(models.Editora, {
         foreignKey: 'editoraId',
-        as: 'editoraInfo'
+        as: 'editora'
       });
 
       // Associação com Gênero
       Livro.belongsTo(models.Genero, {
         foreignKey: 'generoId',
-        as: 'generoInfo'
+        as: 'genero'
       });
     }
   }
